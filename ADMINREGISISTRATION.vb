@@ -2,6 +2,7 @@
 Imports MetroFramework.Controls
 Imports MongoDB.Bson
 Imports MongoDB.Bson.Serialization.Attributes
+Imports MongoDB.Bson.Serialization
 Imports MongoDB.Driver
 
 Public Class ADMINREGISISTRATION
@@ -18,7 +19,7 @@ Public Class ADMINREGISISTRATION
     Public Sub New()
         InitializeComponent()
         _database = Connection1.GetMongoDatabase()
-
+        'columnsName = New List(Of String) From {"ID", "Name", "Age", "Email", "Contact", "Address", "Username", "Password"}
         ' If Connection1.IsConnected() Then
         'MessageBox.Show("Connected to MongoDB successfully!", "Connection Status", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Else
@@ -43,12 +44,7 @@ Public Class ADMINREGISISTRATION
     Private Sub ADMINREGISISTRATION_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         data = New List(Of MetroTextBox) From {txtid, txtname, txtage, txtemail, txtcontact, txtaddress, txtusername, txtpassword}
 
-        For i As Integer = 0 To columnsName.Count - 1
-            Guna2DataGridView1.Columns.Add(columnsName(i), columnsName(i))
-        Next
-
         Guna2DataGridView1.DataSource = GetAdminsData()
-
 
     End Sub
 
@@ -106,7 +102,8 @@ Public Class ADMINREGISISTRATION
         dataTable.Columns.Add("Password", GetType(String))
 
         Dim adminsCollection = Connection1.GetAdminsCollection()
-        Dim admins = adminsCollection.Find(FilterDefinition(Of Admin).Empty).ToList()
+        Dim adminsCursor = adminsCollection.Find(FilterDefinition(Of Admin).Empty)
+        Dim admins = adminsCursor.ToList()
 
         For Each admin As Admin In admins
             dataTable.Rows.Add(admin.ID, admin.Name, admin.Age, admin.Email, admin.Contact, admin.Address, admin.Username, admin.Password)
@@ -118,9 +115,106 @@ Public Class ADMINREGISISTRATION
     Private Sub BtnAdmin_Click(sender As Object, e As EventArgs) Handles BtnAdmin.Click
         Dim validData As Boolean = True
         ValidateFieldsNotEmptyAdmin(data, validData)
+
+        Dim selectedRowIndex As Integer = Guna2DataGridView1.CurrentCell.RowIndex
+
+        If selectedRowIndex >= 0 AndAlso Guna2DataGridView1.Rows.Count > selectedRowIndex Then
+            Dim selectedRow As DataGridViewRow = Guna2DataGridView1.Rows(selectedRowIndex)
+
+            ' Get the ID of the selected admin from the first cell of the row
+            Dim adminID As String = selectedRow.Cells("ID").Value.ToString()
+
+            ' Retrieve the existing admin data from MongoDB
+            Dim adminsCollection = Connection1.GetAdminsCollection()
+
+            ' Use the adminID as a string directly in the lambda expression
+            Dim filter = Builders(Of Admin).Filter.Eq(Function(a) a.ID, adminID)
+            Dim existingAdmin = adminsCollection.Find(filter).FirstOrDefault()
+
+            If existingAdmin IsNot Nothing Then
+                ' Update the Admin object with the data from the textboxes
+                existingAdmin.Name = txtname.Text
+                existingAdmin.Age = Integer.Parse(txtage.Text)
+                existingAdmin.Email = txtemail.Text
+                existingAdmin.Contact = txtcontact.Text
+                existingAdmin.Address = txtaddress.Text
+                existingAdmin.Username = txtusername.Text
+                existingAdmin.Password = txtpassword.Text
+
+                ' Update the admin data in the MongoDB collection
+                adminsCollection.ReplaceOne(filter, existingAdmin)
+
+                MessageBox.Show("Admin updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ' Refresh the DataGridView with the latest data
+                Guna2DataGridView1.DataSource = GetAdminsData()
+            Else
+                MessageBox.Show("Admin not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+        Else
+            MessageBox.Show("Please select a row to update.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
+
     End Sub
 
     Private Sub BtnRemove_Click(sender As Object, e As EventArgs) Handles BtnRemove.Click
-        ClearTextBox(data)
+        Dim id As String = txtid.Text
+
+        If String.IsNullOrEmpty(id) Then
+            MessageBox.Show("Please select a row to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+
+            Try
+                Dim selectedRowIndex As Integer = Guna2DataGridView1.CurrentCell.RowIndex
+
+                If selectedRowIndex >= 0 AndAlso Guna2DataGridView1.Rows.Count > selectedRowIndex Then
+                    Dim selectedRow As DataGridViewRow = Guna2DataGridView1.Rows(selectedRowIndex)
+
+                    ' Get the ID of the selected admin from the first cell of the row
+                    Dim adminID As String = selectedRow.Cells("ID").Value.ToString()
+
+                    ' Show a confirmation dialog before deleting the admin
+                    Dim confirmationResult As DialogResult = MessageBox.Show("Are you sure you want to delete this admin?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+                    If confirmationResult = DialogResult.Yes Then
+                        ' Retrieve the existing admin data from MongoDB
+                        Dim adminsCollection = Connection1.GetAdminsCollection()
+
+                        ' Use the adminID as a string directly in the lambda expression
+                        Dim filter = Builders(Of ADMINREGISISTRATION.Admin).Filter.Eq(Function(a) a.ID, adminID)
+                        Dim deleteResult = adminsCollection.DeleteOne(filter)
+
+                        If deleteResult.DeletedCount > 0 Then
+                            MessageBox.Show("Admin deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                            ' Refresh the DataGridView with the latest data
+                            Guna2DataGridView1.DataSource = GetAdminsData()
+                            ClearTextBox(data)
+                        Else
+                            MessageBox.Show("Admin not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        End If
+                    End If
+                Else
+                    MessageBox.Show("Please select a row to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+            Catch ex As Exception
+                MessageBox.Show("An error occurred while removing the admin: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
+
+    Private Sub Guna2DataGridView1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles Guna2DataGridView1.CellClick
+        If e.RowIndex >= 0 AndAlso e.RowIndex < Guna2DataGridView1.Rows.Count Then
+            ' Get the selected row's data
+            Dim selectedRow As DataGridViewRow = Guna2DataGridView1.Rows(e.RowIndex)
+            txtid.Text = selectedRow.Cells("ID").Value.ToString()
+            txtname.Text = selectedRow.Cells("Name").Value.ToString()
+            txtage.Text = selectedRow.Cells("Age").Value.ToString()
+            txtemail.Text = selectedRow.Cells("Email").Value.ToString()
+            txtcontact.Text = selectedRow.Cells("Contact").Value.ToString()
+            txtaddress.Text = selectedRow.Cells("Address").Value.ToString()
+            txtusername.Text = selectedRow.Cells("Username").Value.ToString()
+            txtpassword.Text = selectedRow.Cells("Password").Value.ToString()
+        End If
     End Sub
 End Class

@@ -2,6 +2,7 @@
 Imports Guna.UI2.WinForms
 Imports System.Net
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
+Imports System.Web.UI.WebControls
 
 Module Validation1
     Private MetroTextBox As MetroFramework.Controls.MetroTextBox
@@ -78,8 +79,10 @@ Module Validation1
     End Function
 
     Public Function ClearTextBox(data As List(Of MetroTextBox))
-        For i As Integer = 0 To data.Count - 1
-            data(i).Clear()
+        For Each d As MetroTextBox In data
+            If d IsNot Nothing Then
+                d.Text = String.Empty
+            End If
         Next
     End Function
 
