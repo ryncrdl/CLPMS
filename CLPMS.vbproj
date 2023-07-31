@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{496660D3-DC13-4502-90C9-B4F46ECD3115}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>CLPMS.My.MyApplication</StartupObject>
+    <RootNamespace>CLPMS</RootNamespace>
+    <AssemblyName>CLPMS</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>CLPMS.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>CLPMS.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Guna.UI2, Version=2.0.4.4, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>packages\Guna.UI2.WinForms.2.0.4.4\lib\net472\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ADMINHOME.Designer.vb">
+      <DependentUpon>ADMINHOME.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ADMINHOME.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADMINREGISISTRATION.Designer.vb">
+      <DependentUpon>ADMINREGISISTRATION.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ADMINREGISISTRATION.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ARCHIVEFILES.Designer.vb">
+      <DependentUpon>ARCHIVEFILES.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ARCHIVEFILES.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DASHBOARD.Designer.vb">
+      <DependentUpon>DASHBOARD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DASHBOARD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LESSEE.Designer.vb">
+      <DependentUpon>LESSEE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LESSEE.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LESSORACCOUNT.Designer.vb">
+      <DependentUpon>LESSORACCOUNT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LESSORACCOUNT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOAD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOAD.Designer.vb">
+      <DependentUpon>LOAD.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LOGIN.Designer.vb">
+      <DependentUpon>LOGIN.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LOGIN.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MANAGERACCOUNT.Designer.vb">
+      <DependentUpon>MANAGERACCOUNT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MANAGERACCOUNT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PROPERTYMANAGEMENT.Designer.vb">
+      <DependentUpon>PROPERTYMANAGEMENT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PROPERTYMANAGEMENT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PROPERTYMANAGEMENTADD.Designer.vb">
+      <DependentUpon>PROPERTYMANAGEMENTADD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PROPERTYMANAGEMENTADD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CONFIRMPASS.Designer.vb">
+      <DependentUpon>CONFIRMPASS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CONFIRMPASS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Validation1.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ADMINHOME.resx">
+      <DependentUpon>ADMINHOME.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ADMINREGISISTRATION.resx">
+      <DependentUpon>ADMINREGISISTRATION.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ARCHIVEFILES.resx">
+      <DependentUpon>ARCHIVEFILES.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DASHBOARD.resx">
+      <DependentUpon>DASHBOARD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LESSEE.resx">
+      <DependentUpon>LESSEE.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LESSORACCOUNT.resx">
+      <DependentUpon>LESSORACCOUNT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOAD.resx">
+      <DependentUpon>LOAD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LOGIN.resx">
+      <DependentUpon>LOGIN.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MANAGERACCOUNT.resx">
+      <DependentUpon>MANAGERACCOUNT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PROPERTYMANAGEMENT.resx">
+      <DependentUpon>PROPERTYMANAGEMENT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PROPERTYMANAGEMENTADD.resx">
+      <DependentUpon>PROPERTYMANAGEMENTADD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CONFIRMPASS.resx">
+      <DependentUpon>CONFIRMPASS.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\LOAD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOAD1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGIN.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGINBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGINBUTT1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXITBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOAD2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PANELBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PANELBUTT1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PANELBUTTONTALAGA.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PRPRTYBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LSSBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LSSACCBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MNGRACCBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ADMNINREGISBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ARCHIVEBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LGOUTBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\johnreipogi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panelbg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\panelbg1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DASHBOARDBUTT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CLPMSplain.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
