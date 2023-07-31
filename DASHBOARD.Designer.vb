@@ -331,7 +331,6 @@ Partial Class DASHBOARD
     Friend WithEvents Button3 As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
@@ -345,4 +344,5 @@ Partial Class DASHBOARD
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Button8 As Button
+    Public WithEvents Panel2 As Panel
 End Class

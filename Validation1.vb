@@ -23,18 +23,6 @@ Module Validation1
         End If
     End Function
 
-    Public Function SetupDataGridViewColumns(table As DataGridView, columnsName As List(Of String))
-        ' Add columns to the DataGridView
-
-        For i As Integer = 0 To columnsName.Count - 1
-            table.Columns.Add(columnsName(i), columnsName(i))
-        Next
-
-        'Demo data
-        table.Rows.Add("1", "John Doe", "30", "john.doe@example.com", "1234567890", "123 Main St.", "Acme Corp", "johndoe", "myp@ssw0rd")
-        table.Rows.Add("2", "Jane Smith", "25", "jane.smith@example.com", "9876543210", "456 Oak Ave.", "Tech Inc.", "janesmith", "password123")
-    End Function
-
 
     Public Function ValidateFieldsNotEmpty(data As List(Of MetroTextBox))
         ' Check if any of the fields are empty or null
@@ -54,8 +42,11 @@ Module Validation1
             Return False
         End If
 
-        If String.IsNullOrEmpty(data(4).Text.Trim()) Then
+        If (String.IsNullOrEmpty(data(4).Text.Trim())) Then
             MessageBox.Show("Please enter your contact number.")
+            Return False
+        ElseIf Not Integer.TryParse(data(4).Text, ageValue) Then
+            MessageBox.Show("Please enter valid contact number.")
             Return False
         End If
 
@@ -64,8 +55,10 @@ Module Validation1
             Return False
         End If
 
+
         If String.IsNullOrEmpty(data(6).Text.Trim()) Then
             MessageBox.Show("Please enter your business name.")
+
             Return False
         End If
 

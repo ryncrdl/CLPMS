@@ -1,6 +1,8 @@
 ﻿Imports System.Net
+Imports System.Web.UI.WebControls
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 Imports CLPMS.Validation1
+Imports CLPMS.SwitchingPanels
 Imports MetroFramework.Controls
 
 Public Class LESSEE
@@ -14,14 +16,6 @@ Public Class LESSEE
 
     Private Sub LESSEE_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         data = New List(Of MetroTextBox) From {txtid, txtname, txtage, txtemail, txtcontact, txtaddress, txtbusiness, txtusername, txtpassword}
-        columnsName = New List(Of String) From {"ID", "Name", "Age", "Email", "Contact", "Address", "Business", "Username", "Password"}
-
-        Try
-            SetupDataGridViewColumns(Guna2DataGridView1, columnsName)
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
     End Sub
 
     Private Sub Guna2DataGridView1_SelectionChanged(sender As Object, e As EventArgs) Handles Guna2DataGridView1.SelectionChanged
@@ -34,5 +28,13 @@ Public Class LESSEE
 
     Private Sub BtnRemove_Click(sender As Object, e As EventArgs) Handles BtnRemove.Click
         DeleteData(txtid, data)
+    End Sub
+
+    Private Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
+        ClearTextBox(data)
+    End Sub
+
+    Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        SwitchPanel(DASHBOARD.Panel2, PROPERTYMANAGEMENT)
     End Sub
 End Class
