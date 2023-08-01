@@ -6,10 +6,7 @@ Imports MongoDB.Bson.Serialization
 Imports MongoDB.Driver
 
 Public Class ADMINREGISISTRATION
-
-    Private Const ConnectionString As String = "mongodb+srv://johnjericpalima11:johnjericpalima11@clpmsdb.wo66qzz.mongodb.net/CLPMSdb?retryWrites=true&w=majority"
-
-    Private MetroTextBox As MetroFramework.Controls.MetroTextBox
+    'Private MetroTextBox As MetroFramework.Controls.MetroTextBox
     Private DataGridView As Guna.UI2.WinForms.Guna2DataGridView
     Private data As List(Of MetroTextBox)
     Private columnsName As List(Of String)

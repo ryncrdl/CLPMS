@@ -46,7 +46,37 @@ Module Validation2
             validData = False
             Return False
         End If
+    End Function
 
+    Public Function ValidatePropertyData(data As List(Of MetroTextBox), ByRef validData As Boolean)
+        ' Check if any of the fields are empty or null
+        validData = True
+
+        Dim sq As Integer
+        If Not Integer.TryParse(data(0).Text, sq) Or sq <= 0 Then
+            MessageBox.Show("Please enter a valid square meter.")
+            validData = False
+            Return False
+        End If
+
+        If String.IsNullOrEmpty(data(1).Text.Trim()) Then
+            MessageBox.Show("Please enter amenities.")
+            validData = False
+            Return False
+        End If
+
+        If String.IsNullOrEmpty(data(2).Text.Trim()) Then
+            MessageBox.Show("Please enter description.")
+            validData = False
+            Return False
+        End If
+
+        If String.IsNullOrEmpty(data(3).Text.Trim()) Then
+            MessageBox.Show("Please enter Permit.")
+            validData = False
+            Return False
+        End If
 
     End Function
+
 End Module

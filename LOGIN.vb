@@ -1,4 +1,6 @@
-﻿Public Class LOGIN
+﻿Imports MongoDB.Driver
+
+Public Class LOGIN
     Private Sub LOGIN_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
@@ -13,9 +15,37 @@
             TextBox2.Focus()
 
         Else
-            TextBox1.Clear()
-            TextBox2.Clear()
-            DASHBOARD.Show()
+            Try
+                Dim username As String = TextBox1.Text
+                Dim password As String = TextBox2.Text
+
+                ' Retrieve the existing admin data from MongoDB
+                Dim adminsCollection = Connection1.GetAdminsCollection()
+
+                ' Build the filter to find the admin with the specified username and password
+                Dim filter = Builders(Of ADMINREGISISTRATION.Admin).Filter.And(
+                Builders(Of ADMINREGISISTRATION.Admin).Filter.Eq(Function(a) a.Username, username),
+                Builders(Of ADMINREGISISTRATION.Admin).Filter.Eq(Function(a) a.Password, password)
+            )
+
+                ' Check if an admin with the given credentials exists
+                Dim admin As ADMINREGISISTRATION.Admin = adminsCollection.Find(filter).FirstOrDefault()
+
+                If admin IsNot Nothing Then
+                    ' Successfully logged in
+                    MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                    TextBox1.Clear()
+                    TextBox2.Clear()
+                    Me.Close()
+                    DASHBOARD.Show()
+                Else
+                    ' Invalid credentials
+                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                End If
+            Catch ex As Exception
+                MessageBox.Show("An error occurred during login: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
         End If
     End Sub
 

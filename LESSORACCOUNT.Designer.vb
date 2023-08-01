@@ -32,7 +32,7 @@ Partial Class LESSORACCOUNT
         Me.Guna2GradientPanel1 = New Guna.UI2.WinForms.Guna2GradientPanel()
         Me.Guna2Button5 = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Button4 = New Guna.UI2.WinForms.Guna2Button()
-        Me.Guna2Button2 = New Guna.UI2.WinForms.Guna2Button()
+        Me.BtnAdd = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
         Me.txtpassword = New MetroFramework.Controls.MetroTextBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -198,21 +198,21 @@ Partial Class LESSORACCOUNT
         Me.Guna2Button4.TabIndex = 166
         Me.Guna2Button4.Text = "View Property"
         '
-        'Guna2Button2
+        'BtnAdd
         '
-        Me.Guna2Button2.BackColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Guna2Button2.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.Guna2Button2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.Guna2Button2.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.Guna2Button2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.Guna2Button2.FillColor = System.Drawing.Color.DimGray
-        Me.Guna2Button2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.Guna2Button2.ForeColor = System.Drawing.Color.White
-        Me.Guna2Button2.Location = New System.Drawing.Point(55, 580)
-        Me.Guna2Button2.Name = "Guna2Button2"
-        Me.Guna2Button2.Size = New System.Drawing.Size(173, 45)
-        Me.Guna2Button2.TabIndex = 165
-        Me.Guna2Button2.Text = "Update Lessor"
+        Me.BtnAdd.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.BtnAdd.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.BtnAdd.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.BtnAdd.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.BtnAdd.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.BtnAdd.FillColor = System.Drawing.Color.DimGray
+        Me.BtnAdd.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.BtnAdd.ForeColor = System.Drawing.Color.White
+        Me.BtnAdd.Location = New System.Drawing.Point(55, 580)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(173, 45)
+        Me.BtnAdd.TabIndex = 165
+        Me.BtnAdd.Text = "Update Lessor"
         '
         'Guna2Button1
         '
@@ -581,7 +581,7 @@ Partial Class LESSORACCOUNT
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Guna2Button5)
         Me.Controls.Add(Me.Guna2Button4)
-        Me.Controls.Add(Me.Guna2Button2)
+        Me.Controls.Add(Me.BtnAdd)
         Me.Controls.Add(Me.Guna2Button1)
         Me.Controls.Add(Me.Guna2DataGridView1)
         Me.Controls.Add(Me.MetroTextBox1)
@@ -604,7 +604,7 @@ Partial Class LESSORACCOUNT
     Friend WithEvents Guna2GradientPanel1 As Guna.UI2.WinForms.Guna2GradientPanel
     Friend WithEvents Guna2Button5 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Button4 As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Guna2Button2 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents BtnAdd As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Button1 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents txtpassword As MetroFramework.Controls.MetroTextBox
     Friend WithEvents Label9 As Label

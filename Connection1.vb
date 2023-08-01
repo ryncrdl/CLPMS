@@ -1,7 +1,10 @@
-﻿Imports MongoDB.Driver
+﻿Imports CLPMS.PROPERTYMANAGEMENTADD
+Imports CLPMS.ADMINREGISISTRATION
+Imports CLPMS.PROPERTYMANAGEMENT
+Imports MongoDB.Driver
 
 Module Connection1
-    Private ReadOnly ConnectionString As String = "mongodb+srv://johnjericpalima11:johnjericpalima11@clpmsdb.wo66qzz.mongodb.net/CLPMSdb?retryWrites=true&w=majority"
+    Public ReadOnly ConnectionString As String = "mongodb+srv://johnjericpalima11:johnjericpalima11@clpmsdb.wo66qzz.mongodb.net/CLPMSdb?retryWrites=true&w=majority"
     Private ReadOnly DatabaseName As String = "CLPMSdb"
 
     Private ReadOnly Client As IMongoClient = New MongoClient(ConnectionString)
@@ -20,9 +23,25 @@ Module Connection1
         End Try
     End Function
 
-    'Admin
-    Public Function GetAdminsCollection() As IMongoCollection(Of ADMINREGISISTRATION.Admin)
-        Dim collectionName As String = "Admins"
-        Return Database.GetCollection(Of ADMINREGISISTRATION.Admin)(collectionName)
+    Private Function GetCollectionName(Of T)() As IMongoCollection(Of T)
+        Dim collectionName As String = GetType(T).Name
+        Return Database.GetCollection(Of T)(collectionName)
     End Function
+
+    'Admin
+    '   Public Function GetAdminsCollection() As IMongoCollection(Of GetCollectionName)
+    'Dim collectionName As String = "Admins"
+    ' Database.GetCollection(Of ADMINREGISISTRATION.Admin)(collectionName)
+    'End Function
+
+    'Admin  
+    Public Function GetAdminsCollection() As IMongoCollection(Of Admin)
+        Return GetCollectionName(Of Admin)()
+    End Function
+
+    'Property
+    Public Function GetPropertiesCollection() As IMongoCollection(Of PropertyM)
+        Return GetCollectionName(Of PropertyM)()
+    End Function
+
 End Module
